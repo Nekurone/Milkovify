@@ -5,6 +5,7 @@ COGS = [
     "owner",
     "stats",
     "testing",
+    "markov"
     ]
 
 
