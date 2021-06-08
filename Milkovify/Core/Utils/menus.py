@@ -91,7 +91,9 @@ async def menu(
     try:
         react, user = await ctx.bot.wait_for(
             "reaction_add",
-            check=ReactionPredicate.with_emojis(tuple(controls.keys()), message, ctx.author),
+            check=ReactionPredicate.with_emojis(
+                tuple(controls.keys()), message, ctx.author
+            ),
             timeout=timeout,
         )
     except asyncio.TimeoutError:
@@ -205,7 +207,9 @@ def start_adding_reactions(
     if loop is None:
         loop = asyncio.get_running_loop()
     else:
-        warnings.warn("Explicitly passing the loop will not work in Red 3.4+", DeprecationWarning)
+        warnings.warn(
+            "Explicitly passing the loop will not work in Red 3.4+", DeprecationWarning
+        )
 
     return loop.create_task(task())
 

@@ -7,28 +7,29 @@ import discord
 from discord.ext import commands
 
 from Core.config import logger, github
-from Core import checks 
+from Core import checks
 from Core.Utils.chat_formatter import humanize_timedelta
+
 
 def setup(client):
     client.add_cog(Stats(client))
+
 
 class Stats(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.group(name='Information',
-                    help='Commands that give information about {client.name}')
-    
+    @commands.group(
+        name="Information", help="Commands that give information about {client.name}"
+    )
     async def Information_Group(self):
         return cls.help
-    @commands.command(name='ping',
-                      usage=';ping')
-    
+
+    @commands.command(name="ping", usage=";ping")
     async def ping(self, ctx):
-        '''
+        """
         Measures how long until a message is sent to Discord and detected.
-        '''
+        """
         ## Honestly, stole this from somewhere and I can't remmeber where
         ## If anybody knows that'd be great
         ping = ctx.message
@@ -39,7 +40,8 @@ class Stats(commands.Cog):
             content=f":ping_pong: Pong! ({delta} ms)\n*Discord WebSocket Latency: {round(self.client.latency, 5)} ms*"
         )
         return
-    def get_client_uptime(self, brief = False):
+
+    def get_client_uptime(self, brief=False):
         now = datetime.datetime.now()
         delta = now - self.client.uptime
         hours, remainder = divmod(int(delta.total_seconds()), 3600)
@@ -51,17 +53,16 @@ class Stats(commands.Cog):
                 fmt = "{d}d " + fmt
             return fmt.format(d=days, h=hours, m=minutes, s=seconds)
         return humanise_timedelta(delta)
-        
-    @commands.command(name='uptime',
-                      usage=';uptime')
+
+    @commands.command(name="uptime", usage=";uptime")
     @commands.check(checks.is_mod_or_superior)
-    async def uptime(self,ctx):
-        '''
+    async def uptime(self, ctx):
+        """
         Gets the time since the bot first connected to Discord
-        '''
+        """
         now = datetime.datetime.now()
         delta = now - self.client.uptime
-        
+
         em = discord.Embed(
             title="Local time",
             description=str(datetime.datetime.now())[:-7],
@@ -77,8 +78,8 @@ class Stats(commands.Cog):
             icon_url="https://media.giphy.com/media/qjPD3Me0OCvFC/giphy.gif",
         )
         await ctx.send(embed=em)
-    @commands.command(name='about',
-                      usage=';about')
+
+    @commands.command(name="about", usage=";about")
     @commands.check(checks.is_mod_or_superior)
     async def about(self, ctx):
         embed = discord.Embed(description="ABOUT ME, THE BOT")

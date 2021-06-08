@@ -4,10 +4,9 @@ import discord
 from typing import List, Iterable, Union, Dict
 
 
-
 async def is_mod_or_superior(
-    client,
-    obj: Union[discord.Message, discord.Member, discord.Role]):
+    client, obj: Union[discord.Message, discord.Member, discord.Role]
+):
 
     if isinstance(obj, discord.Message):
         user = obj.author
@@ -21,7 +20,7 @@ async def is_mod_or_superior(
             return True
         return False
     else:
-        raise TypeError('Only Messages, Members or Roles May be Passed.')
+        raise TypeError("Only Messages, Members or Roles May be Passed.")
 
     if await client.is_owner(user):
         return True
@@ -29,12 +28,13 @@ async def is_mod_or_superior(
         return True
     if await client.is_mod(user):
         return True
-    
+
     return False
 
+
 async def is_admin_or_superior(
-    client,
-    obj: Union[discord.Message, discord.Member, discord.Role]):
+    client, obj: Union[discord.Message, discord.Member, discord.Role]
+):
 
     if isinstance(obj, discord.Message):
         user = obj.author
@@ -46,20 +46,19 @@ async def is_admin_or_superior(
             return True
         return False
     else:
-        raise TypeError('Only Messages, Members or Roles May be Passed.')
+        raise TypeError("Only Messages, Members or Roles May be Passed.")
 
     if await client.is_owner(user):
         return True
     if await client.is_admin(user):
         return True
-    
+
     return False
 
 
-
 async def is_voicemod_or_superior(
-    client,
-    obj: Union[discord.Message, discord.Member, discord.Role]):
+    client, obj: Union[discord.Message, discord.Member, discord.Role]
+):
 
     if isinstance(obj, discord.Message):
         user = obj.author
@@ -75,7 +74,7 @@ async def is_voicemod_or_superior(
             return True
         return False
     else:
-        raise TypeError('Only Messages, Members or Roles May be Passed.')
+        raise TypeError("Only Messages, Members or Roles May be Passed.")
 
     if await client.is_owner(user):
         return True
@@ -85,5 +84,5 @@ async def is_voicemod_or_superior(
         return True
     if await client.is_voicemod(user):
         return True
-    
+
     return False
