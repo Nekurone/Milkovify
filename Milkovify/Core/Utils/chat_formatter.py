@@ -166,7 +166,9 @@ def bordered(*columns: Sequence[str], ascii_border: bool = False) -> str:
     }
 
     sep = " " * 4  # Separator between boxes
-    widths = tuple(max(len(row) for row in column) + 9 for column in columns)  # width of each col
+    widths = tuple(
+        max(len(row) for row in column) + 9 for column in columns
+    )  # width of each col
     colsdone = [False] * len(columns)  # whether or not each column is done
     lines = [sep.join("{TL}" + "{HZ}" * width + "{TR}" for width in widths)]
 
@@ -405,7 +407,9 @@ def format_perms_list(perms: discord.Permissions) -> str:
 
 
 def humanize_timedelta(
-    *, timedelta: Optional[datetime.timedelta] = None, seconds: Optional[SupportsInt] = None
+    *,
+    timedelta: Optional[datetime.timedelta] = None,
+    seconds: Optional[SupportsInt] = None,
 ) -> str:
     """
     Get a locale aware human timedelta representation.
@@ -478,6 +482,7 @@ def humanize_number(val: Union[int, float], override_locale=None) -> str:
     """
     return format_decimal(val, locale=None)
 
+
 def strfdelta(delta: timedelta):
     """Format a timedelta object to a message with time units.
     Parameters
@@ -493,7 +498,7 @@ def strfdelta(delta: timedelta):
     if delta.weeks:
         ws = "%i week" % delta.weeks
         if delta.weeks > 1:
-            ws+=1
+            ws += 1
         s.append(ds)
     if delta.days:
         ds = "%i day" % delta.days
@@ -512,4 +517,3 @@ def strfdelta(delta: timedelta):
     if secs:
         s.append("%i sec" % secs)
     return " ".join(s)
-
