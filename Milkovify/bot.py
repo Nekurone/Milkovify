@@ -41,22 +41,3 @@ class Client(commands.Bot):
         self.logger.GENERAL(
             "{0} Out of {1} Cogs Loaded".format(len(self.cogs), len(cogs))
         )
-
-        @commands.Cog.listener()
-        async def on_ready(self):
-            guilds = len(self.guilds)
-            users = len(set([m for m in self.get_all_members()]))
-            INFO = [
-                str(self.user),
-                "Prefix: {0}".format(self.command_prefix),
-                "Version: {0}".format(self.version),
-                "Discord.py  Version: {0}".format(discord.__version__),
-            ]
-            if guilds:
-                INFO.extend(("Servers: {}".format(guilds), "Users: {}".format(users)))
-            else:
-                print("Ready. I'm not in any server yet!")
-            INFO.append(
-                "{} cogs with {} commands".format(len(self.cogs), len(self.commands))
-            )
-            print(INFO)

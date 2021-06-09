@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 import markovify
 from Core.config import USER_ID
+from random import randint as rand
 
 def setup(client):
     client.add_cog(MarkovCog(client))
@@ -35,24 +36,28 @@ class MarkovCog(commands.Cog):
     def train_markov(self):
         with open("milkmessages.txt", "r") as f:
             text = f.read()
-        self.model = markovify.Text(text, state_size=4, well_formed=True)
+        self.model = markovify.Text(text, state_size=2, well_formed=True)
 
     def get_markov_text(self):
-        return self.model.make_sentence()
+        c = self.model.make_sentence(tries=20)
+        if c is None:
+            c = "Unable to form sentence, add more training data."
+        print(c)
+        return c
 
     @commands.Cog.listener()
     async def on_message(self, message):
-        if str(message.user.id) != USER_ID:
+        if str(message.author.id) != USER_ID:
             return
         if 0 != len(message.raw_mentions) + len(message.raw_channel_mentions) + len(
             message.raw_role_mentions
         ) + len(message.attachments):
             return
 
-        cleaned_message = discord.utils.escape_markdown(message.clean_content())
+        cleaned_message = message.clean_content
         if cleaned_message[-1] != ".":
             cleaned_message += "."
-        with open("milkmessages.txt", "w") as f:
+        with open("milkmessages.txt", "a") as f:
             f.write("\n{0}".format(cleaned_message))
             f.close()
 
