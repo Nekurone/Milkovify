@@ -2,7 +2,7 @@ import json
 import discord
 from discord.ext import commands
 import markovify
-from Core.config import USER_ID
+from Core.config import USER_ID, TOKEN
 from random import randint as rand
 
 def setup(client):
@@ -55,6 +55,8 @@ class MarkovCog(commands.Cog):
             return
 
         cleaned_message = message.clean_content
+        if any['<','>','@'] in cleaned_message or if cleaned_message[0] == TOKEN:
+            return
         if cleaned_message[-1] != ".":
             cleaned_message += "."
         with open("milkmessages.txt", "a") as f:
