@@ -28,9 +28,6 @@ class Stats(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    @commands.group(
-        name="Information", help="Commands that give information about {client.name}"
-    )
     @commands.command(name="ping", usage=";ping")
     async def ping(self, ctx):
         """
@@ -61,7 +58,7 @@ class Stats(commands.Cog):
         return humanize_timedelta(delta)
 
     @commands.command(name="uptime", usage=";uptime")
-    @commands.check(checks.is_mod_or_superior)
+    #@commands.check(checks.is_mod_or_superior)
     async def uptime(self, ctx):
         """
         Gets the time since the bot first connected to Discord
@@ -86,7 +83,7 @@ class Stats(commands.Cog):
         await ctx.send(embed=em)
 
     @commands.command(name="about", usage=";about")
-    @commands.check(checks.is_mod_or_superior)
+    #@commands.check(checks.is_mod_or_superior)
     async def about(self, ctx):
         embed = discord.Embed(description="ABOUT ME, THE BOT")
         embed.title = "About:"
