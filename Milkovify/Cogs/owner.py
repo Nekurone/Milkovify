@@ -40,7 +40,7 @@ class OwnerCog(commands.Cog):
             await ctx.send("**`SUCCESS`**\N{PISTOL}")
 
     @commands.command(name="reload")
-    @commands.check(checks.is_admin_or_superior)
+    @commands.check(permissions.is_admin_or_superior)
     async def rel(self, ctx, *, cog: str):
         """Command which Reloads a Module.
         Remember to use dot path. e.g: cogs.owner"""
