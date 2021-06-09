@@ -6,9 +6,9 @@ import psutil
 import discord
 from discord.ext import commands
 
-from ..Core.config import logger, github
-from ..Core import checks
-from ..Core.Utils.chat_formatter import humanize_timedelta
+from Core.config import logger, github
+from Core import checks
+from Core.Utils.chat_formatter import humanize_timedelta
 
 
 def setup(client):
