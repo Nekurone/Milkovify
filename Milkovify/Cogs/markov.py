@@ -2,7 +2,7 @@ import json
 import discord
 from discord.ext import commands
 import markovify
-from ..Core.config import USER_ID
+from Core.config import USER_ID
 
 def setup(client):
     client.add_cog(MarkovCog(client))
