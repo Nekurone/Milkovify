@@ -55,7 +55,7 @@ class MarkovCog(commands.Cog):
             return
 
         cleaned_message = message.clean_content
-        if any['<','>','@'] in cleaned_message or if cleaned_message[0] == TOKEN:
+        if any(x in cleaned_message for x in['<','>','@']) or  cleaned_message[0] == TOKEN:
             return
         if cleaned_message[-1] != ".":
             cleaned_message += "."
