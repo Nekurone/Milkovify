@@ -6,7 +6,7 @@ Runs the client. When adding new Cogs. Be sure to add them to COGS in here so th
 
 todo: Rewrite
 """
-COGS = ["owner", "stats", "testing", "markov"]
+COGS = ["owner", "stats", "markov"]
 
 
 def main():
