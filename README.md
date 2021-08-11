@@ -4,6 +4,8 @@
 </p>
 Markov Bot that tracks your messages and spits out a Markov chain like your messages :)
 
+# ARCHIVED AND DISCONTINUED. 
+# I don't recommended downloading anyway. 
 ## Requirements
 
 - discord.py 
